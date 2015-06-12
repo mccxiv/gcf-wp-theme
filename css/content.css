@@ -1,0 +1,58 @@
+.accent-1 .content, .accent-1 .content h1 {border-color: #5FA297}
+.accent-1 .content h1 em {color: #5FA297}
+
+.accent-2 .content, .accent-2 .content h1 {border-color: #5FA25F}
+.accent-2 .content h1 em {color: #5FA25F}
+
+.accent-3 .content, .accent-3 .content h1 {border-color: #645FA2}
+.accent-3 .content h1 em {color: #645FA2}
+
+.accent-4 .content, .accent-4 .content h1 {border-color: #5F82A2}
+.accent-4 .content h1 em {color: #5F82A2}
+
+.accent-5 .content, .accent-5 .content h1 {border-color: #E3A242}
+.accent-5 .content h1 em {color: #E3A242}
+
+.accent-6 .content, .accent-6 .content h1 {border-color: #A25F5F}
+.accent-6 .content h1 em {color: #A25F5F}
+
+.accent-7 .content, .accent-7 .content h1 {border-color: #795548}
+.accent-7 .content h1 em {color: #795548}
+
+.content {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 30px;
+    font-size: 1.4rem;
+    margin: 20px 0 0 385px;
+    width: 450px;
+    background-color: #EFEFEF;
+    background-size: 100% auto;
+    border-top: 10px solid;
+    animation-duration: 600ms;
+    animation-delay: 1s;
+}
+
+.content, .content * {
+    transition: all 300ms ease-out;
+}
+
+.content:first-of-type {
+    margin-top: 60px;
+}
+
+.content h1 {
+    font-family: 'Neo Sans Bold', sans-serif;
+    padding-left: 15px;
+    font-size: 2.3rem;
+    border-left: 5px solid;
+}
+
+.content h1 em {
+    color: blue;
+    font-style: normal;
+}
+
+.content > *:first-child {
+    margin-top: 0;
+}

@@ -1,37 +1,33 @@
-<?php
-/**
- * The header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="content">
- *
- * @package GCF Theme
- */
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+        <?php wp_head(); ?>
+    </head>
 
-<?php wp_head(); ?>
-</head>
+    <body <?php body_class(); ?>>
 
-<body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'gcf' ); ?></a>
+        <div class="background default" style="background-image: url(<?php root(); ?>img/bg.png)"></div>
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div><!-- .site-branding -->
+        <nav class="sidebar shadow">
+            <img class="logo" src="<?php root(); ?>img/logobw.png">
+            <hr>
+            <div class="menu">
+                <a href="#" data-accent="accent-1">Home & Blog</a>
+                <a href="#" data-accent="accent-2">Who We Are</a>
+                <a href="#" data-accent="accent-3" data-background-image="url(<?php root(); ?>img/recogiendolatas.jpg)">Who We Support</a>
+                <a href="#" data-accent="accent-4" data-background-image="url(<?php root(); ?>img/pescador.jpg)">Contributing</a>
+                <a href="#" data-accent="accent-5" data-background-image="url(<?php root(); ?>img/recogiendolatas.jpg)">Our Friends</a>
+                <a href="#" data-accent="accent-6" >Contact Us</a>
+                <a href="#" data-accent="accent-7" >Apply for Assistance</a>
+            </div>
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gcf' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+            <div class="footer">
+                <hr>
+                <a href="#" class="btn btn-primary btn-lg contribute-button">Contribute</a>
+                <br>
+                <span class="smaller">Tax deductible in the <br>United States and Costa Rica</span>
+            </div>
+        </nav>

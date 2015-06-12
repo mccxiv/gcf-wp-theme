@@ -1,0 +1,77 @@
+.accent-1 .sidebar {background-color: #5FA297;}
+.accent-2 .sidebar {background-color: #5FA25F;}
+.accent-3 .sidebar {background-color: #645FA2;}
+.accent-4 .sidebar {background-color: #5F82A2;}
+.accent-5 .sidebar {background-color: #E3A242;}
+.accent-6 .sidebar {background-color: #A25F5F;}
+.accent-7 .sidebar {background-color: #795548;}
+
+@media (max-height: 500px) {
+    .sidebar .footer{
+        display: none;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    float: left;
+    margin-left: 100px;
+    padding-bottom: 200px;
+    width: 250px;
+    height: 100vh;
+    border: 1px solid rgba(60,60,60,0.2);
+    border-top: none;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.63);
+    transition: background-color 300ms ease-out;
+}
+
+.sidebar hr {
+    margin: 5px;
+    height: 1px;
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(250, 250, 250, 0.75), rgba(0, 0, 0, 0));
+}
+
+.sidebar .logo {
+    margin: 20px 0;
+    width: 40%;
+    -webkit-filter: saturate(0%) grayscale(100%) brightness(109%) contrast(1000%) /* Todo other vendor prefixes */
+}
+
+.sidebar .menu a {
+    display: block;
+    width: 100%;
+    color: inherit;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 41px;
+    transition: background-color 250ms ease-out;
+}
+
+.sidebar .menu a:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+}
+
+.sidebar .menu a:focus {
+    text-decoration: none;
+}
+
+.sidebar .footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.sidebar .smaller {
+    text-transform: none;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+}
+
+.sidebar .contribute-button {
+    margin: 12px;
+}

@@ -1,0 +1,42 @@
+html, body {
+    min-height: 100%;
+    height: 1px; /* Fix min-height inherit bug */
+}
+
+@font-face {
+    font-family: 'Neo Sans Bold';
+    src: url(../font/neosans_bold.woff) format('woff');
+}
+
+body {
+    font-size: 62.5%;
+    color: #717171;
+}
+
+body, .background {
+    background-position: top center;
+    background-size: cover;
+}
+
+.background {
+    /*transition: opacity 500ms;*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.transition250 {
+    transition: all 250ms ease-out;
+}
+
+.transition500 {
+    transition: all 500ms ease-out;
+}
+
+.shadow {
+    box-shadow: 2px 0 3px 1px rgba(0,0,0,.25);
+}

@@ -1,9 +1,33 @@
 <?php
-/**
- * GCF Theme functions and definitions
- *
- * @package GCF Theme
- */
+
+add_action('wp_enqueue_scripts', 'load_css');
+add_action('wp_enqueue_scripts', 'load_js');
+add_action('init', 'add_custom_post_types');
+
+function add_custom_post_types() {
+
+    register_post_type('homepage_section', [
+        'labels' => [
+            'name' => 'Homepage Sections',
+            'singular_name' => 'Homepage Section',
+        ],
+        'description' => 'These bits of content will appear on the homepage',
+        'public' => true,
+        'menu_position' => 5,
+        'supports' => ['title', 'editor']
+    ]);
+
+    register_post_type('member', [
+        'labels' => [
+            'name' => 'Staff & Board Members',
+            'singular_name' => 'Member',
+        ],
+        'description' => 'This is a person whose biography will appear on the website, for board members and staff',
+        'public' => true,
+        'menu_position' => 6,
+        'supports' => ['title', 'editor']
+    ]);
+}
 
 if ( ! function_exists( 'gcf_setup' ) ) :
 /**
@@ -23,7 +47,7 @@ function gcf_setup() {
 	load_theme_textdomain( 'gcf', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+	//add_theme_support( 'automatic-feed-links' );
 
 	/*
 	 * Let WordPress manage the document title.
@@ -43,30 +67,6 @@ function gcf_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary Menu', 'gcf' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
 	) );
 
 	// Set up the WordPress core custom background feature.
@@ -108,26 +108,25 @@ function gcf_widgets_init() {
 }
 add_action( 'widgets_init', 'gcf_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function gcf_scripts() {
-	wp_enqueue_style( 'gcf-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'gcf-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
-	wp_enqueue_script( 'gcf-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+function load_css() {
+    wp_enqueue_style('main', get_template_directory_uri().'/css/main.css');
+    wp_enqueue_style('animate', get_template_directory_uri().'/css/animate.css');
+    wp_enqueue_style('content', get_template_directory_uri().'/css/content.css');
+    wp_enqueue_style('sidebar', get_template_directory_uri().'/css/sidebar.css');
+    wp_enqueue_style('accents', get_template_directory_uri().'/css/accents.css');
 }
-add_action( 'wp_enqueue_scripts', 'gcf_scripts' );
+
+function load_js() {
+    wp_enqueue_script('accent-switcher', get_template_directory_uri().'/js/accent-switcher.js', ['jquery']);
+    wp_enqueue_script('load-animations', get_template_directory_uri().'/js/load-animations.js', ['jquery', 'wait-for-images']);
+	wp_enqueue_script('hover-background-switcher', get_template_directory_uri().'/js/hover-background-switcher.js', ['jquery']);
+    wp_enqueue_script('wait-for-images', get_template_directory_uri().'/bower_components/waitForImages/dist/jquery.waitforimages.min.js', ['jquery']);
+}
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -148,3 +147,11 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+//============================
+// Helpers :)
+//============================
+function root() {
+    echo get_template_directory_uri() . '/';
+}
