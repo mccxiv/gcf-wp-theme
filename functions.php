@@ -3,10 +3,21 @@
 add_action('wp_enqueue_scripts', 'load_css');
 add_action('wp_enqueue_scripts', 'load_js');
 add_action('init', 'add_custom_post_types');
+add_action('get_header', 'remove_admin_bar_margin');
+add_action('admin_menu', 'remove_stuff_from_admin_page');
+
+function remove_admin_bar_margin() {
+    remove_action('wp_head', '_admin_bar_bump_cb'); // from left
+}
+
+function remove_stuff_from_admin_page() {
+    remove_menu_page( 'edit-comments.php' );
+    remove_menu_page('edit.php');
+}
 
 function add_custom_post_types() {
 
-    register_post_type('homepage_section', [
+    /*register_post_type('homepage_section', [
         'labels' => [
             'name' => 'Homepage Sections',
             'singular_name' => 'Homepage Section',
@@ -15,16 +26,27 @@ function add_custom_post_types() {
         'public' => true,
         'menu_position' => 5,
         'supports' => ['title', 'editor']
-    ]);
+    ]);*/
 
     register_post_type('member', [
         'labels' => [
             'name' => 'Staff & Board Members',
             'singular_name' => 'Member',
         ],
-        'description' => 'This is a person whose biography will appear on the website, for board members and staff',
+        'description' => 'This is a person whose biography will appear on the website, for both board members and staff',
         'public' => true,
-        'menu_position' => 6,
+        'menu_position' => 20,
+        'supports' => ['title', 'editor', 'thumbnail']
+    ]);
+
+    register_post_type('project', [
+        'labels' => [
+            'name' => 'Projects',
+            'singular_name' => 'Project',
+        ],
+        'description' => 'A project to which the GCF has contributed',
+        'public' => true,
+        'menu_position' => 21,
         'supports' => ['title', 'editor']
     ]);
 }
@@ -123,35 +145,6 @@ function load_js() {
     wp_enqueue_script('wait-for-images', get_template_directory_uri().'/bower_components/waitForImages/dist/jquery.waitforimages.min.js', ['jquery']);
 }
 
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-
-//============================
-// Helpers :)
-//============================
 function root() {
     echo get_template_directory_uri() . '/';
 }

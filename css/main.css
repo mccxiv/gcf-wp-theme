@@ -18,6 +18,11 @@ body, .background {
     background-size: cover;
 }
 
+ul {
+    padding: 0;
+    list-style: none;
+}
+
 .background {
     /*transition: opacity 500ms;*/
     position: fixed;
