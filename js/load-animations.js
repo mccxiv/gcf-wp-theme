@@ -1,9 +1,9 @@
 (function($) {
     $(function() {
-        $('.content, .sidebar').css('opacity', 0);
+        //$('.content, .sidebar').css('opacity', 1);
         setTimeout(function() {
-            $('.content').addClass('animated fadeIn');
             $('.sidebar').addClass('animated fadeInLeft');
+            $('.content').addClass('animated fadeInUp');
         }, 400);
 
         $('.background.default').css('opacity', 0).waitForImages(true).done(function() {

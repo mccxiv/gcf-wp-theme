@@ -9,29 +9,34 @@ html, body {
 }
 
 body {
-    font-size: 62.5%;
     color: #717171;
+    font-size: 62.5%;
+   /* font-family: 'Kreon', serif;*/
+    font-family: Georgia, sans-serif;
 }
 
 body, .background {
-    background-position: top center;
     background-size: cover;
-}
-
-ul {
-    padding: 0;
-    list-style: none;
+    background-position: top center;
 }
 
 .background {
-    /*transition: opacity 500ms;*/
-    position: fixed;
     top: 0;
     left: 0;
-    z-index: -1;
     opacity: 0;
     width: 100%;
     height: 100%;
+    position: fixed;
+}
+
+.main {
+    position: relative;
+}
+
+/* Only blur on project pages */
+.single-project .background {
+    /*-webkit-filter: blur(1px);
+    filter: blur(1px);*/
 }
 
 .transition250 {
@@ -42,6 +47,38 @@ ul {
     transition: all 500ms ease-out;
 }
 
-.shadow {
-    box-shadow: 2px 0 3px 1px rgba(0,0,0,.25);
+/* prevent FOUC */
+.sidebar, .content {
+    opacity: 0;
+}
+
+/* Custom Facebook Feed modifications :) */
+#cff .cff-page-name,
+#cff .cff-author-img {
+    display: none;
+}
+
+#cff .cff-item {
+    position: relative;
+}
+
+#cff .cff-viewpost-facebook {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+#cff .cff-date {
+    margin: 0 0 5px !important;
+    font-size: 1.2rem;
+    transition: all 1s ease-out;
+}
+
+#cff .cff-date:hover::after {
+    content: ' | Click to visit the Facebook Page.';
+}
+
+#cff .cff-author {
+    margin: 0;
 }

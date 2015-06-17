@@ -1,10 +1,12 @@
 <?php
 
+register_footer_scripts();
 add_action('wp_enqueue_scripts', 'load_css');
 add_action('wp_enqueue_scripts', 'load_js');
 add_action('init', 'add_custom_post_types');
 add_action('get_header', 'remove_admin_bar_margin');
 add_action('admin_menu', 'remove_stuff_from_admin_page');
+add_action('after_setup_theme', 'gcf_setup');
 
 function remove_admin_bar_margin() {
     remove_action('wp_head', '_admin_bar_bump_cb'); // from left
@@ -16,18 +18,6 @@ function remove_stuff_from_admin_page() {
 }
 
 function add_custom_post_types() {
-
-    /*register_post_type('homepage_section', [
-        'labels' => [
-            'name' => 'Homepage Sections',
-            'singular_name' => 'Homepage Section',
-        ],
-        'description' => 'These bits of content will appear on the homepage',
-        'public' => true,
-        'menu_position' => 5,
-        'supports' => ['title', 'editor']
-    ]);*/
-
     register_post_type('member', [
         'labels' => [
             'name' => 'Staff & Board Members',
@@ -51,14 +41,6 @@ function add_custom_post_types() {
     ]);
 }
 
-if ( ! function_exists( 'gcf_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
 function gcf_setup() {
 	/*
 	 * Make theme available for translation.
@@ -68,9 +50,6 @@ function gcf_setup() {
 	 */
 	load_theme_textdomain( 'gcf', get_template_directory() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	//add_theme_support( 'automatic-feed-links' );
-
 	/*
 	 * Let WordPress manage the document title.
 	 * By adding theme support, we declare that this theme does not use a
@@ -78,27 +57,7 @@ function gcf_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary Menu', 'gcf' ),
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'gcf_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 }
-endif; // gcf_setup
-add_action( 'after_setup_theme', 'gcf_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -143,6 +102,26 @@ function load_js() {
     wp_enqueue_script('load-animations', get_template_directory_uri().'/js/load-animations.js', ['jquery', 'wait-for-images']);
 	wp_enqueue_script('hover-background-switcher', get_template_directory_uri().'/js/hover-background-switcher.js', ['jquery']);
     wp_enqueue_script('wait-for-images', get_template_directory_uri().'/bower_components/waitForImages/dist/jquery.waitforimages.min.js', ['jquery']);
+}
+
+function register_footer_scripts() {
+    wp_register_script('slidr', get_template_directory_uri().'/bower_components/slidr/slidr.min.js', [], false, true);
+    wp_register_script('slidr-init', get_template_directory_uri().'/js/slidr-init.js', ['jquery'], false, true);
+}
+
+function the_slider() {
+    $haveImages = get_field('image-1');
+    if ($haveImages) {
+        echo '<div class="gallery" id="gallery">';
+        for ($i = 1; $i < 6; $i++) {
+            if (get_field('image-'.$i)) {
+                echo '<div style="background-image: url('.get_field('image-'.$i).')" data-slidr="image-'.$i.'"></div>';
+            }
+        }
+        echo '</div>';
+        wp_enqueue_script('slidr');
+        wp_enqueue_script('slidr-init');
+    }
 }
 
 function root() {

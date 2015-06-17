@@ -1,0 +1,1 @@
+$( "#cff .cff-item:contains('updated their cover photo')" ).remove();
