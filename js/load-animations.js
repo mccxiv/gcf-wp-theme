@@ -7,7 +7,12 @@
         }, 400);
 
         $('.background.default').css('opacity', 0).waitForImages(true).done(function() {
-            $(this).addClass('transition250').css('opacity', 1);
+            $(this).addClass('transition500').css('opacity', 1);
         });
+
+        $(window).on('beforeunload', function() {
+            $('.sidebar').addClass('animated-out fadeOutLeft');
+            $('.content').addClass('animated-out fadeOutDown');
+        })
     });
 })(jQuery);

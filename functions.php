@@ -7,6 +7,8 @@ add_action('init', 'add_custom_post_types');
 add_action('get_header', 'remove_admin_bar_margin');
 add_action('admin_menu', 'remove_stuff_from_admin_page');
 add_action('after_setup_theme', 'gcf_setup');
+add_action('init', 'create_project_areas_taxonomy', 0);
+add_action('pre_get_posts', 'order_members_by_custom_field');
 
 function remove_admin_bar_margin() {
     remove_action('wp_head', '_admin_bar_bump_cb'); // from left
@@ -112,18 +114,73 @@ function register_footer_scripts() {
 function the_slider() {
     $haveImages = get_field('image-1');
     if ($haveImages) {
+        echo '<div class="unpadded-content">';
         echo '<div class="gallery" id="gallery">';
         for ($i = 1; $i < 6; $i++) {
             if (get_field('image-'.$i)) {
                 echo '<div style="background-image: url('.get_field('image-'.$i).')" data-slidr="image-'.$i.'"></div>';
             }
         }
-        echo '</div>';
+        echo '</div></div>';
         wp_enqueue_script('slidr');
         wp_enqueue_script('slidr-init');
     }
 }
 
+function the_breadcrumbs() {
+    $postType = get_post_type();
+    if ($postType === 'project') {
+        $link = get_page_link(get_page_by_path('who-we-support'));
+        echo "<a class=\"nav-back\" href=\"$link\">◂ Back to the list</a>";
+    }
+}
+
+function the_portrait() {
+    if (get_field('portrait')) {
+        echo '<div class="portrait" style="background-image: url('.get_field('portrait').')"></div>';
+    }
+}
+
 function root() {
     echo get_template_directory_uri() . '/';
+}
+
+function create_project_areas_taxonomy() {
+    $labels = [
+        'name' => 'Project Areas',
+        'singular_name' => 'Project Area'
+    ];
+
+    register_taxonomy('project-area', 'project', [
+        'hierarchical' => false,
+        'labels' => $labels,
+        'show_ui' => false,
+        'show_admin_column' => true,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var' => true,
+        //'rewrite' => array( 'slug' => 'topic' ),
+    ]);
+}
+
+function order_members_by_custom_field($query) {
+    // do not modify queries in the admin
+    if(is_admin()) return $query;
+
+    // only modify queries for 'member' post type
+    if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] === 'member' ) {
+        $query->set('orderby', 'meta_value_num');
+        $query->set('meta_key', 'member-order');
+        $query->set('order', 'ASC');
+    }
+
+    return $query;
+}
+
+function the_project_tags() {
+    $terms = get_field('project-area-select');
+    if ($terms) {
+        foreach($terms as $term) {
+            echo "<span class=\"project-area-tag\" data-area=\"$term->slug\">$term->name</span>";
+        }
+    }
 }
