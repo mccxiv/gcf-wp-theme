@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="accent-1">
+<html <?php language_attributes(); ?>>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--<link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">-->
-        <link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+        <link rel="icon" type="image/png" href="<?php root(); ?>img/favicon.png" />
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
         <?php wp_head(); ?>
-        <script>
-            var $ = jQuery;
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
         <noscript>
             <style>
                 /* Fallback. Normally js would unhide the content */

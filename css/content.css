@@ -73,6 +73,7 @@
 }
 
 .content hr {
+    border: 0; /* reset */
     margin-left: -30px;
     width: calc(100% + 60px);
     border-top: 1px solid #e0e0de;
@@ -143,6 +144,13 @@
 .projects .project-area-button {
     border-bottom: 1px solid #BBBBBB;
     cursor: pointer;
+    box-shadow: none;
+    line-height: normal;
+    color: inherit;
+}
+
+.projects .project-area-button:hover {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
 }
 
 .projects .project-area-button:nth-child(odd) {
@@ -154,7 +162,8 @@
     float: left;
     padding: 0 20px;
     height: 80px;
-    display: table;
+    display: block;
+    border-radius: 0;
 }
 
 .projects .project-list {
@@ -171,9 +180,16 @@
     display: none;
 }
 
-.projects .project-area-button > * {
+.projects .project-area-button .text-wrapper {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.projects .project-area-button .text-wrapper > * {
     display: table-cell;
     vertical-align: middle;
+    text-align: center;
 }
 
 .projects .link {

@@ -1,46 +1,37 @@
 (function($) {
-	var accents = ['accent-1', 'accent-2', 'accent-3', 'accent-4', 'accent-5', 'accent-6', 'accent-7'];
-	var accentsString = accents.join(' ');
+    $(function() {
+        var sidebar = $('.sidebar');
+        var borderColorTargets = $('.content, .content h1');
+        var lis = $('.menu li');
 
-	var html = $('html');
-	var pageAccent = findCurrentAccent();
+        $.cssHooks['filter'] = {
+            set: function(elem, value) {
+                elem.style['-webkit-filter'] = value;
+                elem.style['filter'] = value;
+            }
+        };
 
-	$(document).on('mouseenter', '[data-accent]', function() {
-		var dis = $(this);
-		var className = dis.data('accent');
+        lis.on('mouseenter', function() {
+            setHue(lis.index(this));
+            $(this).one('mouseleave', function() {
+                // cannot just pass the function to .one
+                // because of parameters
+                setHue();
+            });
+        });
 
-		// remove all
-		cleanUp();
+        setHue();
 
-		// add the correct one
-		html.addClass(className);
-
-		dis.one('mouseleave', function() {
-			// replace with original
-			html.removeClass(className);
-			html.addClass(pageAccent);
-		});
-	});
-
-	$(document).on('click', 'a[data-accent]', function() {
-		var dis = $(this);
-		var className = dis.data('accent');
-
-		pageAccent = className;
-
-		cleanUp();
-		html.addClass(className);
-	});
-
-	function cleanUp() {
-		html.removeClass(accentsString);
-	}
-
-	function findCurrentAccent() {
-		var found = false;
-		accents.forEach(function(accent) {
-			if (html.hasClass(accent)) found = accent;
-		});
-		return found;
-	}
+        /**
+         * Changes the accent (based on hue shift), depending on the current menu item's index
+         * @param [index] - Position in the menu, absence uses current page
+         */
+        function setHue(index) {
+            if (!index && index !== 0) index = lis.index($('.menu .current-menu-item'));
+            var hslInitialDegrees = 209;
+            var degreeShift = (index*40);
+            sidebar.css('filter', 'hue-rotate(' + degreeShift + 'deg)');
+            borderColorTargets.css('border-color', 'hsl(' + (hslInitialDegrees + degreeShift) + ', 26%, 53%)');
+        }
+    });
 }(jQuery));

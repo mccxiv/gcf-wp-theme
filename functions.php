@@ -9,13 +9,15 @@ add_action('admin_menu', 'remove_stuff_from_admin_page');
 add_action('after_setup_theme', 'gcf_setup');
 add_action('init', 'create_project_areas_taxonomy', 0);
 add_action('pre_get_posts', 'order_members_by_custom_field');
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
 
 function remove_admin_bar_margin() {
     remove_action('wp_head', '_admin_bar_bump_cb'); // from left
 }
 
 function remove_stuff_from_admin_page() {
-    remove_menu_page( 'edit-comments.php' );
+    remove_menu_page('edit-comments.php');
     remove_menu_page('edit.php');
 }
 
@@ -51,13 +53,6 @@ function gcf_setup() {
 	 * to change 'gcf' to the name of your theme in all the template files
 	 */
 	load_theme_textdomain( 'gcf', get_template_directory() . '/languages' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
 	add_theme_support( 'title-tag' );
 }
 
@@ -68,10 +63,10 @@ function gcf_setup() {
  *
  * @global int $content_width
  */
-function gcf_content_width() {
+/*function gcf_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'gcf_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'gcf_content_width', 0 );
+add_action( 'after_setup_theme', 'gcf_content_width', 0 );*/
 
 /**
  * Register widget area.
@@ -92,6 +87,7 @@ function gcf_widgets_init() {
 add_action( 'widgets_init', 'gcf_widgets_init' );
 
 function load_css() {
+    wp_enqueue_style('materialize', get_template_directory_uri().'/bower_components/materialize/dist/css/materialize.min.css');
     wp_enqueue_style('main', get_template_directory_uri().'/css/main.css');
     wp_enqueue_style('animate', get_template_directory_uri().'/css/animate.css');
     wp_enqueue_style('content', get_template_directory_uri().'/css/content.css');
@@ -100,15 +96,17 @@ function load_css() {
 }
 
 function load_js() {
-    wp_enqueue_script('accent-switcher', get_template_directory_uri().'/js/accent-switcher.js', ['jquery']);
-    wp_enqueue_script('load-animations', get_template_directory_uri().'/js/load-animations.js', ['jquery', 'wait-for-images']);
-	wp_enqueue_script('hover-background-switcher', get_template_directory_uri().'/js/hover-background-switcher.js', ['jquery']);
-    wp_enqueue_script('wait-for-images', get_template_directory_uri().'/bower_components/waitForImages/dist/jquery.waitforimages.min.js', ['jquery']);
+    wp_enqueue_script('accent-switcher', get_template_directory_uri().'/js/accent-switcher.js', ['jquery'], false, true);
+    wp_enqueue_script('load-animations', get_template_directory_uri().'/js/load-animations.js', ['jquery', 'wait-for-images'], false, true);
+    wp_enqueue_script('wait-for-images', get_template_directory_uri().'/bower_components/waitForImages/dist/jquery.waitforimages.min.js', ['jquery'], false, true);
+    wp_enqueue_script('tweaks', get_template_directory_uri().'/js/tweaks.js', ['jquery'], false, true);
+    wp_enqueue_script('materialize', get_template_directory_uri().'/bower_components/materialize/dist/js/materialize.min.js', ['tweaks'], false, true);
 }
 
 function register_footer_scripts() {
     wp_register_script('slidr', get_template_directory_uri().'/bower_components/slidr/slidr.min.js', [], false, true);
     wp_register_script('slidr-init', get_template_directory_uri().'/js/slidr-init.js', ['jquery'], false, true);
+    wp_register_script('who-we-support', get_template_directory_uri().'/js/who-we-support.js', ['jquery'], false, true);
 }
 
 function the_slider() {
@@ -157,8 +155,7 @@ function create_project_areas_taxonomy() {
         'show_ui' => false,
         'show_admin_column' => true,
         'update_count_callback' => '_update_post_term_count',
-        'query_var' => true,
-        //'rewrite' => array( 'slug' => 'topic' ),
+        'query_var' => true
     ]);
 }
 
