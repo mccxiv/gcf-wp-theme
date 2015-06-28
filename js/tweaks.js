@@ -4,6 +4,12 @@ $ = jQuery; // Needed by materialize
     $(function() {
         $('#cff .cff-item:contains("updated their cover photo")').remove();
         $('.menu li').addClass('waves-effect');
-        console.log('Tweaks');
+
+        $('.menu li:first-child a').on('click', function(e) {
+            alert('Homepage not implemented yet');
+            e.preventDefault();
+        });
+
+        $('p:empty').remove();
     });
 })(jQuery);

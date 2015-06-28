@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<!-- Page Type: index -->
+
 <?php if (have_posts()): ?>
     <?php while (have_posts()): the_post(); ?>
         <section class="content">

@@ -54,6 +54,14 @@ body, .background {
     transition: all 500ms ease-out;
 }
 
+.transition1500 {
+    transition: all 1500ms ease-out;
+}
+
+.btn {
+    font-family: 'Titillium Web', sans-serif;
+}
+
 /* prevent FOUC */
 .sidebar, .content {
     opacity: 0;
@@ -62,6 +70,10 @@ body, .background {
 /* Undo the damage from materialize -_- */
 nav ul li {
     float: none;
+}
+
+nav ul.menu li:hover {
+    background-color: transparent;
 }
 
 nav {

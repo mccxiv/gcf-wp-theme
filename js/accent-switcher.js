@@ -1,6 +1,7 @@
 (function($) {
     $(function() {
         var sidebar = $('.sidebar');
+        var highlighter = $('.background-highlighter');
         var borderColorTargets = $('.content, .content h1');
         var lis = $('.menu li');
 
@@ -12,10 +13,11 @@
         };
 
         lis.on('mouseenter', function() {
-            setHue(lis.index(this));
+            var index = lis.index(this);
+            highlighter.css('top', (index * 41) + 'px');
+            setHue(index);
             $(this).one('mouseleave', function() {
-                // cannot just pass the function to .one
-                // because of parameters
+                highlighter.css('top', '-41px');
                 setHue();
             });
         });

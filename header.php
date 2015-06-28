@@ -27,8 +27,12 @@
         <div class="main">
             <nav class="sidebar">
                 <img class="logo" src="<?php root(); ?>img/logobw.png">
+                <ul class="language-menu clearfix center-align"><?php pll_the_languages();?></ul>
                 <hr>
-                <?php wp_nav_menu(); ?>
+                <div class="menu-wrapper">
+                    <div class="background-highlighter transition250"></div>
+                    <?php wp_nav_menu(['theme_location' => 'primary']); ?>
+                </div>
                 <div class="footer">
                     <hr>
                     <a href="<?php echo get_permalink(get_page_by_path('donate')->ID); ?>" class="waves-effect waves-light btn contribute-button">Contribute</a>

@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "waitForImages": "~2.1.0",
-    "materialize": "~0.96.1"
+    "materialize": "~0.96.1",
+    "slick.js": "~1.5.5"
   }
 }

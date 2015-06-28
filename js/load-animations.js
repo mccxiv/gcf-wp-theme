@@ -13,6 +13,6 @@
         $(window).on('beforeunload', function() {
             $('.sidebar').addClass('animated-out fadeOutLeft');
             $('.content').addClass('animated-out fadeOutDown');
-        })
+        });
     });
 })(jQuery);
