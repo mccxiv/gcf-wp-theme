@@ -41,12 +41,8 @@
 }
 
 .sidebar .menu .current-menu-item {
-    border-left: 7px solid white;
+    border-left: 7px solid rgba(255, 255, 255, 0.64);
     border-right: 7px solid transparent;
-}
-
-.sidebar .menu li:first-child:hover {
-    text-decoration: line-through;
 }
 
 .sidebar .menu-wrapper {

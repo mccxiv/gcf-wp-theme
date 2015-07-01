@@ -6,7 +6,8 @@ html, body {
 
 @font-face {
     font-family: 'Neo Sans Bold';
-    src: url(../font/neosans_bold.woff) format('woff');
+    src: url(../font/neo_sans_std_bold.woff) format('woff');
+    /*src: url(../font/neosans_bold.woff) format('woff');*/
 }
 
 body {

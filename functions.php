@@ -20,6 +20,7 @@ add_filter( 'the_content', 'wpautop' , 20);*/
 add_shortcode('project-list', 'project_list');
 add_shortcode('member-list', 'member_list');
 add_shortcode('button', 'button');
+add_shortcode('hide', 'hide');
 
 function register_main_menu() {
     register_nav_menu('primary', 'Primary Menu');
@@ -66,39 +67,9 @@ function gcf_setup() {
 	 * If you're building a theme based on GCF Theme, use a find and replace
 	 * to change 'gcf' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'gcf', get_template_directory() . '/languages' );
-	add_theme_support( 'title-tag' );
+	load_theme_textdomain('gcf', get_template_directory() . '/languages');
+	add_theme_support('title-tag');
 }
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-/*function gcf_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'gcf_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'gcf_content_width', 0 );*/
-
-/**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function gcf_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'gcf' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-}
-add_action( 'widgets_init', 'gcf_widgets_init' );
 
 function load_css() {
     wp_enqueue_style('materialize', get_template_directory_uri().'/bower_components/materialize/dist/css/materialize.min.css');
@@ -137,8 +108,8 @@ function the_slider() {
             }
         }
         echo '</div></div>';
-        wp_enqueue_script('slidr');
-        wp_enqueue_script('slidr-init');
+        //wp_enqueue_script('slidr');
+        //wp_enqueue_script('slidr-init');
     }
 }
 
@@ -148,7 +119,7 @@ function the_breadcrumbs() {
         $link = get_page_link(get_page_by_path('who-we-support'));
         ?>
             <div class="unpadded-content breadcrumbs">
-                <a class="nav-back" href="<?php echo $link ?>">◂ Back to the list</a>
+                <a class="nav-back" href="<?php echo $link ?>">◂ <?php _e('Back to the list', 'gfc'); ?></a>
             </div>
             <hr>
         <?php
@@ -198,7 +169,7 @@ function the_project_tags() {
     $terms = get_field('project-area-select');
     if ($terms) {
         foreach($terms as $term) {
-            echo "<span class=\"project-area-tag\" data-area=\"$term->slug\">$term->name</span>";
+            echo "<span class=\"project-area-tag\" data-area=\"$term->slug\">".__($term->name, 'gcf')."</span>";
         }
     }
 }
@@ -210,12 +181,12 @@ function member_list() {
         <div class="members">
             <hr>
             <div class="member-list-header-container unpadded-content">
-                <h1 class="member-list-header">Board of Directors</h1>
+                <h1 class="member-list-header"><?php _e('Board of Directors', 'gcf'); ?></h1>
             </div>
             <?php the_member_list('director'); ?>
             <hr>
             <div class="member-list-header-container unpadded-content">
-                <h1 class="member-list-header">Staff</h1>
+                <h1 class="member-list-header"><?php _e('Staff', 'gcf'); ?></h1>
             </div>
             <?php the_member_list('staff'); ?>
         </div>
@@ -255,30 +226,30 @@ function project_list() {
             <div class="project-area-button waves-effect btn" data-area="health">
                 <div class="text-wrapper">
                     <img src="<?php root(); ?>img/health.png">
-                    <span>Health</span>
+                    <span><?php _e('Health', 'gcf'); ?></span>
                 </div>
             </div>
             <div class="project-area-button waves-effect btn" data-area="education">
                 <div class="text-wrapper">
                     <img src="<?php root(); ?>img/education.png">
-                    <span>Education</span>
+                    <span><?php _e('Education', 'gcf'); ?></span>
                 </div>
             </div>
             <div class="project-area-button waves-effect btn" data-area="environment">
                 <div class="text-wrapper">
                     <img src="<?php root(); ?>img/environment.png">
-                    <span>Environment</span>
+                    <span><?php _e('Environment', 'gcf'); ?></span>
                 </div>
             </div>
             <div class="project-area-button waves-effect btn" data-area="local-economic-development">
                 <div class="text-wrapper">
                     <img src="<?php root(); ?>img/local-development.png">
-                    <span>Local Economic Development</span>
+                    <span><?php _e('Local Economic Development', 'gcf'); ?></span>
                 </div>
             </div>
             <div class="project-area-button waves-effect reset-button">
                 <div class="text-wrapper">
-                    <span>Reset and show all</span>
+                    <span><?php _e('Reset and show all', 'gcf'); ?></span>
                 </div>
             </div>
         </div>
@@ -303,4 +274,8 @@ function project_list() {
 function button($atts, $content) {
     $a = shortcode_atts(['url' => ''], $atts);
     return "<a class=\"waves-effect waves-light btn\" href=\"$a[url]\">$content</a>";
+}
+
+function hide() {
+    return '';
 }
