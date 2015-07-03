@@ -17,8 +17,10 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 /*remove_filter( 'the_content', 'wpautop' );
 add_filter( 'the_content', 'wpautop' , 20);*/
 
+add_shortcode('carousel-with-some-projects', 'carousel_with_some_projects');
 add_shortcode('project-list', 'project_list');
 add_shortcode('member-list', 'member_list');
+add_shortcode('two-columns', 'two_columns');
 add_shortcode('button', 'button');
 add_shortcode('hide', 'hide');
 
@@ -95,6 +97,7 @@ function register_footer_scripts() {
     wp_register_script('slidr', get_template_directory_uri().'/bower_components/slidr/slidr.min.js', [], false, true);
     wp_register_script('slidr-init', get_template_directory_uri().'/js/slidr-init.js', ['jquery'], false, true);
     wp_register_script('who-we-support', get_template_directory_uri().'/js/who-we-support.js', ['jquery'], false, true);
+    wp_register_script('carousel-with-some-projects', get_template_directory_uri().'/js/carousel-with-some-projects.js', ['slick'], false, true);
 }
 
 function the_slider() {
@@ -276,6 +279,54 @@ function button($atts, $content) {
     return "<a class=\"waves-effect waves-light btn\" href=\"$a[url]\">$content</a>";
 }
 
+function two_columns($atts, $content) {
+    return "<div class=\"two-columns\">$content</div>";
+}
+
 function hide() {
     return '';
+}
+
+function carousel_with_some_projects() {
+    ob_start();
+    ?>
+        <?php $loop = new WP_Query(['post_type' => 'project', 'posts_per_page' => 5, 'orderby' => 'rand']); ?>
+        <div class="carousel-with-some-projects unpadded-content">
+            <?php while ($loop->have_posts()): $loop->the_post(); ?>
+                <div class="project">
+
+                    <hr>
+                    <div class="header">
+                        <h1><?php the_title(); ?></h1>
+                    </div>
+                    <hr>
+
+                    <div class="carousel-content clearfix">
+                        <div class="left l-col">
+                            <div class="image" style="background-image: url(<?php echo get_field('image-1'); ?>)"></div>
+                        </div>
+
+                        <div class="left r-col text">
+                            <?php the_content(); ?>
+                        </div>
+
+                        <a href="<?php the_permalink(); ?>" class="read-more-overlay">
+                            <div class="waves-effect waves-light btn read-more-button"><?php _e('Read More', 'gcf'); ?></div>
+                        </a>
+                    </div>
+
+                </div>
+            <?php endwhile; wp_reset_query(); ?>
+        </div>
+        <?php wp_enqueue_script('carousel-with-some-projects'); ?>
+    <?php
+    return ob_get_clean();
+}
+
+/**
+ * returns URL to either the first image or the background of the
+ * current loop's post, whichever is available. false otherwise
+ */
+function get_first_image_or_background() {
+    return get_field('image-1') || get_field('background-image') || false;
 }

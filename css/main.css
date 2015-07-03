@@ -7,7 +7,6 @@ html, body {
 @font-face {
     font-family: 'Neo Sans Bold';
     src: url(../font/neo_sans_std_bold.woff) format('woff');
-    /*src: url(../font/neosans_bold.woff) format('woff');*/
 }
 
 body {
@@ -33,6 +32,16 @@ body, .background {
 
 .main {
     position: relative;
+}
+
+.two-columns {
+    columns: 2;
+    -moz-columns: 2;
+    -webkit-columns: 2;
+}
+
+.two-columns p:first-child {
+    margin-top: 0;
 }
 
 .clearfix:after {
