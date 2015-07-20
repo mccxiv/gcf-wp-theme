@@ -4,7 +4,7 @@
         dots: true,
         arrows: true,
         infinite: false,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 6000,
         easing: 'swing',
         pauseOnDotsHover: true,

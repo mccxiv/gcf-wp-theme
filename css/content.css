@@ -107,6 +107,7 @@
 
 .content .gallery .slick-slide {
     background-size: cover;
+    background-position: center center;
 }
 
 .content .gallery .slick-prev {
@@ -139,10 +140,8 @@
 /* HOME PAGE */
 .carousel-with-some-projects {
     height: 360px;
-    margin-bottom: 70px;
-    margin-top: 50px;
+    margin-bottom: 75px;
     position: relative;
-    /*border-bottom: 1px solid #CDCDCD;*/
 }
 
 .carousel-with-some-projects .slick-prev::before,
@@ -162,6 +161,7 @@
     width: 100%;
     height: calc(100% - 60px);
     padding: 20px 60px;
+    position: relative;
 }
 
 .carousel-with-some-projects .slick-dots {
@@ -176,6 +176,10 @@
 
 .carousel-with-some-projects .header h1 {
     margin: 0;
+}
+
+.carousel-with-some-projects h1 {
+    font-size: 2rem;
 }
 
 .carousel-with-some-projects h2 {
@@ -209,7 +213,6 @@
 
 .carousel-with-some-projects .r-col {
     width: 40%;
-    height: calc(100% - 30px);
     padding-left: 10px;
 }
 
@@ -221,26 +224,25 @@
     cursor: pointer;
 }
 
-.carousel-with-some-projects .text:hover .read-more-overlay {
-    opacity: 1;
-}
-
 .carousel-with-some-projects .read-more-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 80px);
+    margin-left: 40px;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: rgba(0, 0, 0, 0.10);
     opacity: 0;
     text-align: center;
 }
 
-.carousel-with-some-projects .read-more-buttons {
-    margin-top: 100px;
+.carousel-with-some-projects .read-more-button {
+    margin: auto;
 }
 
-.carousel-with-some-projects .read-more-
+.carousel-with-some-projects .carousel-content:hover .read-more-overlay {
+    opacity: 1;
+}
 
 .carousel-with-some-projects .text h2 {
     margin-top: 5px;
@@ -405,4 +407,27 @@
 /* DONATE PAGE */
 .content .content-column p {
     padding: 10px;
+}
+
+@media (max-width: 920px) {
+    .content {
+        margin-left: 255px;
+    }
+}
+
+@media (max-width: 824px) {
+    .content {
+        width: 450px;
+    }
+}
+
+@media (max-width: 724px) {
+    .content {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .content:first-of-type {
+        margin-top: 0px;
+    }
 }

@@ -23,6 +23,7 @@ add_shortcode('member-list', 'member_list');
 add_shortcode('two-columns', 'two_columns');
 add_shortcode('button', 'button');
 add_shortcode('hide', 'hide');
+add_shortcode('side-ribbon', 'side_ribbon');
 
 function register_main_menu() {
     register_nav_menu('primary', 'Primary Menu');
@@ -310,8 +311,8 @@ function carousel_with_some_projects() {
                             <?php the_content(); ?>
                         </div>
 
-                        <a href="<?php the_permalink(); ?>" class="read-more-overlay">
-                            <div class="waves-effect waves-light btn read-more-button"><?php _e('Read More', 'gcf'); ?></div>
+                        <a href="<?php the_permalink(); ?>" class="read-more-overlay valign-wrapper">
+                            <span class="waves-effect waves-light btn read-more-button valign"><?php _e('Read More', 'gcf'); ?></span>
                         </a>
                     </div>
 
@@ -319,6 +320,22 @@ function carousel_with_some_projects() {
             <?php endwhile; wp_reset_query(); ?>
         </div>
         <?php wp_enqueue_script('carousel-with-some-projects'); ?>
+    <?php
+    return ob_get_clean();
+}
+
+function side_ribbon($atts, $content) {
+    ob_start();
+    ?>
+        <div class="unpadded-content ribbon-container">
+            <div class="ribbon">
+                <div class="ribbon-stitches-top"></div>
+                <div class="ribbon-content"><?php echo $content ?></div>
+                <div class="ribbon-stitches-bottom"></div>
+
+                <div class="ribbon-stitches-left"></div>
+            </div>
+        </div>
     <?php
     return ob_get_clean();
 }
