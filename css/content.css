@@ -10,6 +10,7 @@
     /*box-shadow: 2px 0 3px 1px rgba(0,0,0,.25);*/
     box-shadow: 3px 3px 4px -1px rgba(0,0,0,.25);
     background: #FBFBFB url(../img/crossword-a.png);
+    min-height: calc(100vh - 60px);
 }
 
 .content ul li {
@@ -69,6 +70,12 @@
     font-size: 2em;
 }
 
+.content h3 {
+    font-size: 1.5rem;
+    color: #7A7A7A;
+    /*padding-left: 35px;*/
+}
+
 .content h1 em {
     color: blue;
     font-style: normal;
@@ -85,6 +92,8 @@
 .content .gallery {
     height: 250px;
 }
+
+
 
 /*.content .gallery > * {
     width: 100%;
@@ -267,6 +276,17 @@
     font-size: 1.5rem;
     color: #7A7A7A;
     padding-left: 35px;
+}
+
+/* OUR FRIENDS PAGE */
+.friend {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.friend img {
+    width: 250px;
+    height: auto;
 }
 
 /* PROJECTS PAGE */

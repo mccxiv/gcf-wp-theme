@@ -91,6 +91,14 @@ nav {
     line-height: normal;
 }
 
+.btn a {
+    color: white;
+}
+
+i.material-icons {
+    vertical-align: -8px;
+}
+
 /* Custom Facebook Feed modifications :) */
 #cff .cff-page-name,
 #cff .cff-author-img {

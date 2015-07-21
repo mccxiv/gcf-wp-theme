@@ -108,6 +108,11 @@
     font-size: 1.4rem;
 }
 
+.sidebar .facebook-link {
+    margin-top: 7px;
+    display: inline-block;
+}
+
 .language-menu {
     list-style: none;
     padding-bottom: 10px;

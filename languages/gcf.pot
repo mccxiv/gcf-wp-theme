@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: _s 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/_s\n"
 "POT-Creation-Date: 2015-01-06 02:24:02+00:00\n"
-"POT-Revision-Date: Sun Jun 28 2015 15:31:28 GMT-0600 (Central America "
+"POT-Revision-Date: Mon Jul 20 2015 14:25:07 GMT-0600 (Central America "
 "Standard Time)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -25,36 +25,40 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../functions.php:122
+#: ../functions.php:126
 msgid "Back to the list"
 msgstr ""
 
-#: ../functions.php:184
+#: ../functions.php:188
 msgid "Board of Directors"
 msgstr ""
 
-#: ../functions.php:189
+#: ../functions.php:193
 msgid "Staff"
 msgstr ""
 
-#: ../functions.php:229
+#: ../functions.php:233
 msgid "Health"
 msgstr ""
 
-#: ../functions.php:235
+#: ../functions.php:239
 msgid "Education"
 msgstr ""
 
-#: ../functions.php:241
+#: ../functions.php:245
 msgid "Environment"
 msgstr ""
 
-#: ../functions.php:247
+#: ../functions.php:251
 msgid "Local Economic Development"
 msgstr ""
 
-#: ../functions.php:252
+#: ../functions.php:256
 msgid "Reset and show all"
+msgstr ""
+
+#: ../functions.php:315
+msgid "Read More"
 msgstr ""
 
 #: ../header.php:39

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="<?php root(); ?>img/logo-no-text.png" />
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <?php wp_head(); ?>
         <noscript>
             <style>
@@ -35,10 +36,13 @@
                 </div>
                 <div class="footer">
                     <hr>
-                    <a href="<?php echo get_permalink(pll_get_post(get_page_by_path('donate')->ID)); ?>" class="waves-effect waves-light btn contribute-button">
-                        <?php _e('Donate', 'gcf'); ?>
+                    <!--<a href="<?php /*echo get_permalink(pll_get_post(get_page_by_path('donate')->ID)); */?>" class="waves-effect waves-light btn contribute-button">
+                        <?php /*_e('Donate', 'gcf'); */?>
                     </a>
                     <br>
-                    <span class="smaller"><?php _e('Tax deductible in the <br>United States and Costa Rica', 'gcf'); ?></span>
+                    <span class="smaller"><?php /*_e('Tax deductible in the <br>United States and Costa Rica', 'gcf'); */?></span>-->
+                    <a  class="facebook-link" href="https://www.facebook.com/guanacastefund" target="_blank">
+                        <img src="<?php root(); ?>img/facebook.png">
+                    </a>
                 </div>
             </nav>

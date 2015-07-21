@@ -24,6 +24,8 @@ add_shortcode('two-columns', 'two_columns');
 add_shortcode('button', 'button');
 add_shortcode('hide', 'hide');
 add_shortcode('side-ribbon', 'side_ribbon');
+add_shortcode('friend', 'friend');
+add_shortcode('icon', 'icon');
 
 function register_main_menu() {
     register_nav_menu('primary', 'Primary Menu');
@@ -131,8 +133,8 @@ function the_breadcrumbs() {
 }
 
 function the_portrait() {
-    $url = get_field('portrait')? get_field('portrait') : get_template_directory_uri().'/img/no-pic.png';
-    echo "<div class=\"portrait\" style=\"background-image: url($url); \"></div>";
+    $url = get_field('portrait'); //? get_field('portrait') : get_template_directory_uri().'/img/no-pic.png';
+    echo $url? "<div class=\"portrait\" style=\"background-image: url($url); \"></div>" : "";
 }
 
 function root() {
@@ -277,7 +279,8 @@ function project_list() {
 
 function button($atts, $content) {
     $a = shortcode_atts(['url' => ''], $atts);
-    return "<a class=\"waves-effect waves-light btn\" href=\"$a[url]\">$content</a>";
+    if ($a['url']) return "<a class=\"waves-effect waves-light btn\" href=\"$a[url]\">$content</a>";
+    else return "<div class=\"waves-effect waves-light btn\">$content</div>";
 }
 
 function two_columns($atts, $content) {
@@ -327,17 +330,29 @@ function carousel_with_some_projects() {
 function side_ribbon($atts, $content) {
     ob_start();
     ?>
-        <div class="unpadded-content ribbon-container">
-            <div class="ribbon">
-                <div class="ribbon-stitches-top"></div>
-                <div class="ribbon-content"><?php echo $content ?></div>
-                <div class="ribbon-stitches-bottom"></div>
+    <div class="unpadded-content ribbon-container">
+        <div class="ribbon">
+            <div class="ribbon-stitches-top"></div>
+            <div class="ribbon-content"><?php echo $content ?></div>
+            <div class="ribbon-stitches-bottom"></div>
 
-                <div class="ribbon-stitches-left"></div>
-            </div>
+            <div class="ribbon-stitches-left"></div>
         </div>
+    </div>
     <?php
     return ob_get_clean();
+}
+
+function friend($atts, $content) {
+    ob_start();
+    ?>
+        <div class="friend"><?php echo $content ?></div>
+    <?php
+    return ob_get_clean();
+}
+
+function icon($atts, $content) {
+    return "<i class=\"material-icons\">$content</i>";
 }
 
 /**
