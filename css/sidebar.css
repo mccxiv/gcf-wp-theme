@@ -64,7 +64,6 @@
 .sidebar .logo {
     margin: 20px 0;
     width: 40%;
-    -webkit-filter: saturate(0%) grayscale(100%) brightness(109%) contrast(1000%) /* Todo other vendor prefixes */
 }
 
 .sidebar .menu a {
@@ -74,7 +73,6 @@
     font-weight: 700;
     font-size: 1.6rem;
     line-height: 41px;
-   /*transition: background-color 250ms ease-out;*/
 }
 
 .sidebar .menu a,
@@ -83,7 +81,6 @@
 }
 
 .sidebar .menu a:hover {
-    /*background-color: rgba(0, 0, 0, 0.25);*/
     text-decoration: none;
 }
 
@@ -150,7 +147,6 @@
 @media (max-width: 724px) {
     .sidebar {
         position: relative;
-        /*width: 350px;*/
         margin: 0 auto;
         height: auto;
         float: none;

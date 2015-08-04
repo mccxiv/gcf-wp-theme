@@ -7,7 +7,6 @@
     margin: 20px 0 0 350px;
     animation-duration: 600ms;
     background-size: 100% auto;
-    /*box-shadow: 2px 0 3px 1px rgba(0,0,0,.25);*/
     box-shadow: 3px 3px 4px -1px rgba(0,0,0,.25);
     background: #FBFBFB url(../img/crossword-a.png);
     min-height: calc(100vh - 60px);
@@ -20,10 +19,6 @@
 
 .content p {
     line-height: 160%;
-}
-
-.content a.btn {
-    /*margin: 25px;*/
 }
 
 .content.animated-out {
@@ -90,23 +85,8 @@
 }
 
 .content .gallery {
-    height: 250px;
+    height: 300px;
 }
-
-
-
-/*.content .gallery > * {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-}
-
-.content aside[id="gallery-breadcrumbs"] {
-    top: 87%;
-    left: 50% !important;
-    margin-left: -41px !important;
-}*/
 
 .content .slick-slide,
 .content .slick-list,
@@ -217,7 +197,6 @@
 .carousel-with-some-projects .l-col {
     width: 60%;
     padding-right: 10px;
-    /*border-right: 1px solid #CDCDCD;*/
 }
 
 .carousel-with-some-projects .r-col {

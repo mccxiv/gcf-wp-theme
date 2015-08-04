@@ -27,7 +27,7 @@
 
         <div class="main">
             <nav class="sidebar">
-                <img class="logo" src="<?php root(); ?>img/logobw.png">
+                <img class="logo" src="<?php root(); ?>img/logo-color-bw.png">
                 <ul class="language-menu clearfix center-align"><?php pll_the_languages();?></ul>
                 <hr>
                 <div class="menu-wrapper">
