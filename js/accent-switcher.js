@@ -1,6 +1,6 @@
 (function($) {
     $(function() {
-        var sidebar = $('.sidebar');
+        var sidebar = $('.sidebar .background-image');
         var highlighter = $('.background-highlighter');
         var borderColorTargets = $('.content, .content h1');
         var colorTargets;

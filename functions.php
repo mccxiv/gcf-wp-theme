@@ -21,6 +21,7 @@ add_shortcode('carousel-with-some-projects', 'carousel_with_some_projects');
 add_shortcode('project-list', 'project_list');
 add_shortcode('member-list', 'member_list');
 add_shortcode('two-columns', 'two_columns');
+add_shortcode('unpadded-content', 'unpadded_content');
 add_shortcode('button', 'button');
 add_shortcode('hide', 'hide');
 add_shortcode('side-ribbon', 'side_ribbon');
@@ -353,6 +354,10 @@ function friend($atts, $content) {
 
 function icon($atts, $content) {
     return "<i class=\"material-icons\">$content</i>";
+}
+
+function unpadded_content($atts, $content) {
+    return "<div class=\"unpadded-content\">$content</div>";
 }
 
 /**
