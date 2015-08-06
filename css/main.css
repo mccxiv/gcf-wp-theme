@@ -92,6 +92,10 @@ i.material-icons {
     vertical-align: -8px;
 }
 
+strong {
+    font-weight: bold;
+}
+
 /* Custom Facebook Feed modifications :) */
 #cff .cff-page-name,
 #cff .cff-author-img {
