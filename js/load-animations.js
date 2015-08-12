@@ -2,6 +2,7 @@
     $(function() {
         //$('.content, .sidebar').css('opacity', 1);
         setTimeout(function() {
+            $('.sidebar, .content').css('opacity', 1); // Safari fix
             $('.sidebar').addClass('animated fadeInLeft');
             $('.content').addClass('animated fadeInUp');
         }, 400);
