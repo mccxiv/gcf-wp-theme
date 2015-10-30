@@ -23,10 +23,5 @@ $ = jQuery; // Needed by materialize
             cssEase: 'ease-out',
             slidesToShow: 1
         });
-
-        $('.lang-item-es a').attr('href', '#').attr('data-devs', 'check tweaks.js for the temporary code').click(function(e) {
-            e.preventDefault();
-            alert('La sección en Español se encuentra en construcción.')
-        });
     });
 })(jQuery);
