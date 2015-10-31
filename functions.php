@@ -123,10 +123,10 @@ function the_slider() {
 function the_breadcrumbs() {
     $postType = get_post_type();
     if ($postType === 'project') {
-        $link = get_page_link(get_page_by_path('who-we-support'));
+        $link = get_permalink(pll_get_post(get_page_by_path('who-we-support')->ID, pll_current_language()));
         ?>
             <div class="unpadded-content breadcrumbs">
-                <a class="nav-back" href="<?php echo $link ?>">◂ <?php _e('Back to the list', 'gfc'); ?></a>
+                <a class="nav-back" href="<?php echo $link ?>">◂ <?php _e('Back to the list', 'gcf'); ?></a>
             </div>
             <hr>
         <?php
